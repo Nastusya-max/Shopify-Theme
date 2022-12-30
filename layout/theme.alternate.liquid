@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Task №02 - CSS">
+    {{ content_for_header }}
+    <title>Susparsa</title>
+    <link
+      href="https://anastasiya-chernyavskaya.netlify.app/assets/fonts/AvenirNextRoundedStd-Reg.woff"
+      rel="stylesheet"
+    >
+    <link rel="stylesheet" href="https://anastasiya-chernyavskaya.netlify.app/css/index.css">
+  </head>
+
+  <body>
+    {% section 'alternate-header' %}
+
+    {% render 'alternate-breadcrumbs' %}
+
+    <main id="main" class="container">{{ content_for_layout }}</main>
+
+    {% section 'alternate-footer' %}
+  </body>
+</html>

@@ -1,0 +1,344 @@
+<article class="main-product-card product-card">
+  <div class="product-card__info">
+    <h1 class="product-card__heading heading heading--xxl">{{ product.title }}</h1>
+
+    <div class="product-card__price">
+      <span class="visually-hidden">Product price</span>
+      <p>
+        <abbr title="Swiss franc">CHF</abbr>
+        <span class="price">{{ product.price }}</span>
+      </p>
+      <p><small>Tax included</small></p>
+    </div>
+
+    <form action="/cart" method="post" class="product-card__form">
+      <fieldset
+        class="product-card__fieldset product-card__fieldset--size"
+      >
+        <legend>Size</legend>
+        <div class="radio-group">
+          <div class="radio">
+            <input
+              id="XS-size"
+              class="radio__input"
+              type="radio"
+              name="size-option"
+              value="XS"
+
+            ><label
+              class="radio__label"
+              for="XS-size"
+              title="Extra Small"
+              >XS</label
+            >
+          </div>
+
+          <div class="radio">
+            <input
+              id="S-size"
+              class="radio__input"
+              type="radio"
+              name="size-option"
+              value="S"
+              checked
+
+            ><label class="radio__label" for="S-size" title="Small">S</label>
+          </div>
+
+          <div class="radio">
+            <input
+              id="M-size"
+              class="radio__input"
+              type="radio"
+              name="size-option"
+              value="M"
+
+            ><label class="radio__label" for="M-size" title="Medium">M</label>
+          </div>
+
+          <div class="radio">
+            <input
+              id="L-size"
+              class="radio__input"
+              type="radio"
+              name="size-option"
+              value="L"
+
+            ><label class="radio__label" for="L-size" title="Large">L</label>
+          </div>
+
+          <div class="radio">
+            <input
+              id="XL-size"
+              class="radio__input"
+              type="radio"
+              name="size-option"
+              value="XL"
+
+            ><label
+              class="radio__label"
+              for="XL-size"
+              title="Extra Large"
+              >XL</label
+            >
+          </div>
+
+          <div class="radio disabled">
+            <input
+              id="2XL-size"
+              class="radio__input"
+              type="radio"
+              name="size-option"
+              value="2XL"
+              disabled
+
+            ><label
+              class="radio__label"
+              for="2XL-size"
+              title="Double Extra Lage"
+              >2XL</label
+            >
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset
+        class="product-card__fieldset product-card__fieldset--color"
+      >
+        <legend>Color - <span aria-hidden="true">White</span></legend>
+        <div class="radio-group">
+          <div class="radio radio--color">
+            <input
+              id="white-color"
+              class="radio__input"
+              type="radio"
+              name="color-option"
+              value="White"
+              checked
+
+            ><label
+              class="radio__label"
+              for="white-color"
+              title="White"
+              style="background-color: white"
+              ><span class="visually-hidden">White</span></label
+            >
+          </div>
+
+          <div class="radio radio--color">
+            <input
+              id="black-color"
+              class="radio__input"
+              type="radio"
+              name="color-option"
+              value="Black"
+
+            ><label
+              class="radio__label"
+              for="black-color"
+              title="Black"
+              style="background-color: black"
+              ><span class="visually-hidden">Black</span></label
+            >
+          </div>
+
+          <div class="radio radio--color">
+            <input
+              id="grey-color"
+              class="radio__input"
+              type="radio"
+              name="color-option"
+              value="Grey"
+
+            ><label
+              class="radio__label"
+              for="grey-color"
+              title="Grey"
+              style="background-color: #aeaeb0"
+              ><span class="visually-hidden">Grey</span></label
+            >
+          </div>
+
+          <div class="radio radio--color">
+            <input
+              id="purple-color"
+              class="radio__input"
+              type="radio"
+              name="color-option"
+              value="Purple"
+
+            ><label
+              class="radio__label"
+              for="purple-color"
+              title="Purple latte"
+              style="background-color: #ba9be5"
+              ><span class="visually-hidden">Purple latte</span></label
+            >
+          </div>
+
+          <div class="radio radio--color disabled">
+            <input
+              id="pink-color"
+              class="radio__input"
+              type="radio"
+              name="color-option"
+              value="Pink"
+              disabled
+
+            ><label
+              class="radio__label"
+              for="pink-color"
+              title="Pink"
+              style="background-color: #e9a0a7"
+              ><span class="visually-hidden">Pink</span></label
+            >
+          </div>
+
+          <div class="radio radio--color disabled">
+            <input
+              id="barely-pink-color"
+              class="radio__input"
+              type="radio"
+              name="color-option"
+              value="Barely pink"
+              disabled
+
+            ><label
+              class="radio__label"
+              for="barely-pink-color"
+              title="Barely pink"
+              style="background-color: #f8cab1"
+              ><span class="visually-hidden">Barely pink</span></label
+            >
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="product-card__fieldset">
+        <legend class="quantity__legend">
+          <label for="quantity">Quantity</label>
+        </legend>
+        <div class="quantity">
+          <input
+            id="quantity"
+            class="quantity__input"
+            type="number"
+            min="1"
+            max="5"
+            value="1"
+            name="quantity"
+            inputmode="none"
+          >
+          <button
+            class="quantity__button quantity__button--decrease"
+            type="button"
+          >
+            <span class="visually-hidden">Decrease quantity</span>
+          </button>
+          <button
+            class="quantity__button quantity__button--increase"
+            type="button"
+          >
+            <span class="visually-hidden">Increase quantity</span>
+          </button>
+        </div>
+      </fieldset>
+
+      <div class="form-buttons__container">
+        <button
+          class="button button--primary"
+          type="submit"
+          name="type"
+          value="add"
+        >
+          <span class="visually-hidden">Add product to shopping cart</span>
+          Add to cart
+        </button>
+        <button
+          class="button button--secondary"
+          type="submit"
+          name="type"
+          value="buy"
+        >
+          <span class="visually-hidden">Buy product right now</span>
+          Buy it now
+        </button>
+      </div>
+    </form>
+
+    <p class="product-card__text">{{ product.description }}</p>
+  </div>
+
+  {%- for block in section.blocks -%}
+    <div class="collapsible-tabe">
+      <div class="collapsible-item">
+        <button class="collapsible-button" type="button">
+          {{ block.settings.accordeon_header -}}
+          <span class="сollapsible-minus"></span>
+        </button>
+      </div>
+      <div class="collapsible-content">
+        <p class="collapsible-text">{{ block.settings.accordeon_text }}</p>
+      </div>
+      <div class="collapsible-item">
+        <button class="collapsible-button" type="button">
+          Composition & Care<span class="сollapsible-plus"></span>
+        </button>
+      </div>
+      <div class="collapsible-item">
+        <button class="collapsible-button" type="button">
+          Delivery & Returns<span class="сollapsible-plus"></span>
+        </button>
+      </div>
+    </div>
+  {%- endfor -%}
+
+  <img
+    src="{{ product.featured_image | image_url: width: 480 }}"
+    alt="White unisex t-shirt"
+    class="main-roduct-card__image product-card__image"
+  >
+</article>
+
+{% schema %}
+{
+  "name": "alternate-main-product",
+  "templates": ["product"],
+  "tag": "section",
+  "class": "product",
+  "limit": 1,
+  "settings": [],
+  "blocks": [
+    {
+      "type": "accordeon",
+      "name": "Accordeon",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "accordeon_header",
+          "label": "Accordeon header",
+          "default": "Sizing & Fit"
+        },
+        {
+          "type": "richtext",
+          "id": "accordeon_text",
+          "label": "Accordeon text",
+          "default": "<p>Olga is <i>175cm</i>, she is wearing a size <i>S</i>.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "main-product-1"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
