@@ -1,0 +1,35 @@
+{
+  "layout": "theme.alternate",
+  "sections": {
+    "main": {
+      "type": "alternate-main-product",
+      "blocks": {
+        "a6526444-5a04-495f-ab12-3bb6fc7edd3a": {
+          "type": "accordeon",
+          "settings": {
+            "accordeon_header": "Sizing & Fit",
+            "accordeon_text": "<p>Olga is <i>175cm<\/i>, she is wearing a size <i>S<\/i>.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "a6526444-5a04-495f-ab12-3bb6fc7edd3a"
+      ],
+      "settings": {
+      }
+    },
+    "product-recommendations": {
+      "type": "alternate-product-recommendations",
+      "settings": {
+        "recommendations_header": "You may also like",
+        "collection_list": [
+          "sale"
+        ]
+      }
+    }
+  },
+  "order": [
+    "main",
+    "product-recommendations"
+  ]
+}
