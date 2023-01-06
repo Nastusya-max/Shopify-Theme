@@ -6,8 +6,8 @@
           {%- case block.type -%}
             {%- when 'about' -%}
               <section class="footer__section">
-                {%- if block.settings.about_header != blank -%}
-                  <h2 class="footer__heading heading heading--s">{{- block.settings.about_header | escape -}}</h2>
+                {%- if block.settings.about_heading != blank -%}
+                  <h2 class="footer__heading heading heading--s">{{- block.settings.about_heading | escape -}}</h2>
                 {%- endif -%}
 
                 <address class="address">
@@ -56,47 +56,35 @@
                 </address>
               </section>
             {%- when 'menu' -%}
-              <section class="footer__section">
-                <h2 class="footer__heading heading heading--s">Company</h2>
-                <ul class="footer-navigation" role="list">
-                  <li class="footer-navigation__item">
-                    <a href="" class="footer-navigation__link">Women</a>
-                  </li>
-                  <li class="footer-navigation__item">
-                    <a href="" class="footer-navigation__link">Men</a>
-                  </li>
-                  <li class="footer-navigation__item">
-                    <a href="" class="footer-navigation__link">Kids</a>
-                  </li>
-                  <li class="footer-navigation__item">
-                    <a href="" class="footer-navigation__link">About Us</a>
-                  </li>
-                  <li class="footer-navigation__item">
-                    <a href="" class="footer-navigation__link">Our Materials</a>
-                  </li>
-                </ul>
-              </section>
+              {%- if block.settings.menu_link_list != blank -%}
+                <section class="footer__section">
+                  {%- if block.settings.menu_heading != blank -%}
+                    <h2 class="footer__heading heading heading--s">{{ block.settings.menu_heading | escape }}</h2>
+                  {%- endif -%}
+                  <ul class="footer-navigation" role="list">
+                    {%- for link in block.settings.menu_link_list.links -%}
+                      <li class="footer-navigation__item">
+                        <a href="{{ link.url }}" class="footer-navigation__link">{{ link.title | escape }}</a>
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+                </section>
+              {%- endif -%}
             {%- when 'links' -%}
-              <section class="footer__section">
-                <h2 class="footer__heading heading heading--s">Useful Links</h2>
-                <ul class="footer-navigation" role="list">
-                  <li class="footer-navigation__item">
-                    <a href="" class="footer-navigation__link">Privacy Policy</a>
-                  </li>
-                  <li class="footer-navigation__item">
-                    <a href="" class="footer-navigation__link">Shipping Policy</a>
-                  </li>
-                  <li class="footer-navigation__item">
-                    <a href="" class="footer-navigation__link">Return & Refund Policy</a>
-                  </li>
-                  <li class="footer-navigation__item">
-                    <a href="" class="footer-navigation__link">Terms of Service</a>
-                  </li>
-                  <li class="footer-navigation__item">
-                    <a href="" class="footer-navigation__link">Contact Us</a>
-                  </li>
-                </ul>
-              </section>
+              {%- if block.settings.useful_link_list != blank -%}
+                <section class="footer__section">
+                  {%- if block.settings.useful_links_heading != blank -%}
+                    <h2 class="footer__heading heading heading--s">{{ block.settings.useful_links_heading | escape }}</h2>
+                  {%- endif -%}
+                  <ul class="footer-navigation" role="list">
+                    {%- for link in block.settings.useful_link_list.links -%}
+                      <li class="footer-navigation__item">
+                        <a href="{{ link.url }}" class="footer-navigation__link">{{ link.title | escape }}</a>
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+                </section>
+              {%- endif -%}
           {%- endcase -%}
         {%- endfor -%}
       </div>
@@ -105,7 +93,7 @@
       <section class="footer__section">
         <h2 class="visually-hidden">Copyright</h2>
         <p>
-          <small class="copyright-text">© Susparsa <time datetime="2021">2021</time></small>
+          <small class="copyright-text">&copy; {{ shop.name | link_to: '/' }} <time datetime="{{ "now" | date: "%Y" }}">{{ "now" | date: "%Y" }}</time></small>
         </p>
       </section>
     </div>
@@ -124,14 +112,14 @@
       "settings": [
         {
           "type": "text",
-          "id": "about_header",
-          "label": "Header",
+          "id": "about_heading",
+          "label": "Heading",
           "default": "About"
         },
         {
           "type": "richtext",
           "id": "about_text",
-          "label": "Text",
+          "label": "Description",
           "default": "<p>Susparsa Store<br>Geneva, Switzerland</p>"
         },
         {
@@ -154,14 +142,15 @@
       "settings": [
         {
           "type": "text",
-          "id": "menu_header",
-          "label": "Header",
-          "default": "About"
+          "id": "menu_heading",
+          "label": "Heading",
+          "default": "Company"
         },
         {
           "type": "link_list",
           "id": "menu_link_list",
-          "label": "Link"
+          "default": "main-menu",
+          "label": "Menu"
         }
       ]
     },
@@ -171,14 +160,15 @@
       "settings": [
         {
           "type": "text",
-          "id": "useful_links_header",
-          "label": "Header",
+          "id": "useful_links_heading",
+          "label": "Heading",
           "default": "Useful Links"
         },
         {
           "type": "link_list",
           "id": "useful_link_list",
-          "label": "Link"
+          "label": "Menu",
+          "default": "main-menu"
         }
       ]
     }

@@ -292,12 +292,14 @@
       </div>
     </div>
   {%- endfor -%}
-
-  <img
+  <div class="main-roduct-card__image product-card__image">
+    {{ product.featured_image | image_url: width: 480 | image_tag }}
+  </div>
+  <!-- <img
     src="{{ product.featured_image | image_url: width: 480 }}"
     alt="White unisex t-shirt"
     class="main-roduct-card__image product-card__image"
-  >
+  > -->
 </article>
 
 {% schema %}

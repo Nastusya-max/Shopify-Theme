@@ -7,11 +7,12 @@
     <meta name="description" content="Task №02 - CSS">
     {{ content_for_header }}
     <title>Susparsa</title>
-    <link
+    <!-- {{ 'index.css' | asset_url | stylesheet_tag }} -->
+    <!-- <link
       href="https://anastasiya-chernyavskaya.netlify.app/assets/fonts/AvenirNextRoundedStd-Reg.woff"
       rel="stylesheet"
-    >
-    <link rel="stylesheet" href="https://anastasiya-chernyavskaya.netlify.app/css/index.css">
+    > -->
+    <link rel="stylesheet" href="{{ 'index.css' | asset_url }}">
   </head>
 
   <body>
