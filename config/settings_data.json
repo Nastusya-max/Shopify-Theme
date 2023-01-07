@@ -230,7 +230,7 @@
             "type": "about",
             "settings": {
               "about_heading": "About",
-              "about_text": "<p>Susparsa Store<br>Geneva, Switzerland<\/p>",
+              "about_text": "<p>Susparsa Store<br\/>Geneva, Switzerland<\/p>",
               "link_Facebook": "\/facebook",
               "link_Instagram": "\/instagram"
             }
