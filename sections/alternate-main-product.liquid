@@ -3,19 +3,20 @@
     <h1 class="product-card__heading heading heading--xxl">{{ product.title }}</h1>
 
     <div class="product-card__price">
-      <span class="visually-hidden">Product price</span>
+      <span class="visually-hidden">{{ 'products.product.price.price_title' | t}}</span>
       <p>
-        <abbr title="Swiss franc">CHF</abbr>
-        <span class="price">{{ product.price }}</span>
+        <!-- <abbr title="Swiss franc">CHF</abbr> -->
+        <span class="price">{{ product.price  | money  }}</span>
       </p>
-      <p><small>Tax included</small></p>
+      <p><small>{{ 'products.product.include_taxes' | t}}</small></p>
     </div>
 
     <form action="/cart" method="post" class="product-card__form">
       <fieldset
         class="product-card__fieldset product-card__fieldset--size"
       >
-        <legend>Size</legend>
+        <legend>{{ 'products.product.product_settings.size.title' | t}}</legend>
+        
         <div class="radio-group">
           <div class="radio">
             <input
@@ -29,7 +30,7 @@
               class="radio__label"
               for="XS-size"
               title="Extra Small"
-              >XS</label
+              >{{ 'products.product.product_settings.size.options.XS' | t}}</label
             >
           </div>
 
@@ -216,7 +217,7 @@
 
       <fieldset class="product-card__fieldset">
         <legend class="quantity__legend">
-          <label for="quantity">Quantity</label>
+          <label for="quantity">{{ 'products.product.quantity.label' | t}}</label>
         </legend>
         <div class="quantity">
           <input
@@ -233,13 +234,13 @@
             class="quantity__button quantity__button--decrease"
             type="button"
           >
-            <span class="visually-hidden">Decrease quantity</span>
+            <span class="visually-hidden">{{ 'products.product.quantity.decrease' | t}}</span>
           </button>
           <button
             class="quantity__button quantity__button--increase"
             type="button"
           >
-            <span class="visually-hidden">Increase quantity</span>
+            <span class="visually-hidden">{{ 'products.product.quantity.increase' | t}}</span>
           </button>
         </div>
       </fieldset>
@@ -252,7 +253,7 @@
           value="add"
         >
           <span class="visually-hidden">Add product to shopping cart</span>
-          Add to cart
+          <span>{{ 'products.product.add_to_cart' | t}}</span>
         </button>
         <button
           class="button button--secondary"
@@ -261,7 +262,7 @@
           value="buy"
         >
           <span class="visually-hidden">Buy product right now</span>
-          Buy it now
+          <span>{{ 'products.product.buy_it_now' | t}}</span>
         </button>
       </div>
     </form>
@@ -292,6 +293,7 @@
       </div>
     </div>
   {%- endfor -%}
+
   <div class="main-roduct-card__image product-card__image">
     {{ product.featured_image | image_url: width: 480 | image_tag }}
   </div>
@@ -319,7 +321,7 @@
         {
           "type": "text",
           "id": "accordeon_header",
-          "label": "Accordeon header",
+          "label": "Accordeon heading",
           "default": "Sizing & Fit"
         },
         {

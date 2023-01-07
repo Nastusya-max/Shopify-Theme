@@ -1,7 +1,7 @@
 <div class="breadcrumbs">
   <ol class="breadcrumbs__list" role="list">
     <li class="breadcrumbs__item">
-      <a class="breadcrumbs__page" href="{{ routes.root_url }}">Home</a>
+      <a class="breadcrumbs__page" href="{{ routes.root_url }}">{{ 'sections.page.home_title' | t }}</a>
     </li>
     {%- if product.collections != blank -%} 
       {%- assign first_collection = product.collections | first -%}
