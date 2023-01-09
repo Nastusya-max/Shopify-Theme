@@ -2,10 +2,12 @@
   <section class="product-recommendations">
     <h2 class="recommendation-heading heading--xxl heading">{{ section.settings.recommendations_heading }}</h2>
     <ul class="products__list" role="list">
-      {%- for product in section.settings.alternate_collection.products limit:4-%}
-        <li>
-          {% render 'alternate-product-card', alternate_card_product: product%}
-        </li>
+      {%- for recomend_product in section.settings.alternate_collection.products limit:4-%}
+        {% if recomend_product.id != product.id %}
+          <li>
+            {% render 'alternate-product-card', alternate_card_product: recomend_product%}
+          </li>
+        {% endif %}
       {%- endfor -%}
     </ul>
   </section>

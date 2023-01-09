@@ -1,61 +1,65 @@
-<a class="skip-to skip-to--content" href="#main">{{ 'accessibility.skip_to_product_info' | t }}</a>
-<a class="skip-to skip-to--footer" href="#footer">{{ 'accessibility.skip_to_footer' | t }}</a>
-<div class="header-navigation__container">
-  <nav class="header-navigation">
-    <div class="header-navigation__section header-logo__container">
-      <a href="/" class="header-logo__link">
-        {%- if section.settings.logo != blank -%}
-          {%- assign logo_alt = section.settings.logo.alt | default: shop.name | escape -%}
-          <!-- {%- assign logo_height = section.settings.logo_width | divided_by: section.settings.logo.aspect_ratio -%} -->
-          {{ section.settings.logo | image_url: width: section.settings.width | image_tag:
-            class: 'header__heading-logo',   
-            width: section.settings.logo_width,
-            alt: logo_alt
-          }}
-        {%- else -%}
-          <span class="h2">{{ shop.name }}</span>
-        {%- endif -%}
-        <!-- <span class="visually-hidden">Homepage</span> -->
-      </a>
-    </div>
-    
-    <div class="header-navigation__section">
-      <!-- {{linklists.main-menu.links }} -->
-      {%- if section.settings.menu != blank -%}
-        <ul class="header-navigation__list" role="list">
-          {%- for link in section.settings.menu.links -%}
-            <li class="header-navigation__item">
-              {%- if link.links != blank -%}
-                <a href="{{ link.url }}" class="header-navigation__link">{{ link.title | escape }}</a>
-              {%- else -%}
-                <a href="{{ link.url }}" class="header-navigation__link">{{ link.title | escape }}</a>
-              {%- endif -%}
-            </li>
-          {%- endfor -%}
-        </ul>
-      {%- endif -%}
-    </div>
+<script src="{{ 'alternate-header.js' | asset_url }}" type="module"></script>
+<div
+  data-section-id="{{- section.id -}}"
+  data-section-type="alternate-header"
+></div>
 
-    <div class="header-navigation__section">
-      <ul class="header-navigation__list" role="list">
-        <li class="header-navigation__item">
-          <a href="{{ routes.account_url }}" class="header-navigation__link">{{ 'customer.account.title' | t}}</a>
-        </li>
-        <li class="header-navigation__item">
-          <a href="{{ routes.search_url }}" class="header-navigation__link">{{ 'general.search.search' | t}}</a>
-        </li>
-        <li class="header-navigation__item">
-          <a href="{{ routes.cart_url }}" class="header-navigation__link">{{ 'templates.cart.cart' | t }} {{ 'sections.header.alternate_cart_count' | t: count: cart.item_count }}</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-</div>
+<header>
+  <a class="skip-to skip-to--content" href="#main">{{ 'accessibility.skip_to_product_info' | t }}</a>
+  <a class="skip-to skip-to--footer" href="#footer">{{ 'accessibility.skip_to_footer' | t }}</a>
+  <div class="header-navigation__container">
+    <nav class="header-navigation">
+      <div class="header-navigation__section header-logo__container">
+        <a href="/" class="header-logo__link">
+          {%- if section.settings.logo != blank -%}
+            {%- assign logo_alt = section.settings.logo.alt | default: shop.name | escape -%}
+            {{ section.settings.logo | image_url: width: section.settings.width | image_tag:
+              class: 'header__heading-logo',   
+              width: section.settings.logo_width,
+              alt: logo_alt
+            }}
+          {%- else -%}
+            <span class="h2">{{ shop.name }}</span>
+          {%- endif -%}
+        </a>
+      </div>
+      
+      <div class="header-navigation__section">
+        {%- if section.settings.menu != blank -%}
+          <ul class="header-navigation__list" role="list">
+            {%- for link in section.settings.menu.links -%}
+              <li class="header-navigation__item">
+                {%- if link.links != blank -%}
+                  <a href="{{ link.url }}" class="header-navigation__link">{{ link.title | escape }}</a>
+                {%- else -%}
+                  <a href="{{ link.url }}" class="header-navigation__link">{{ link.title | escape }}</a>
+                {%- endif -%}
+              </li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+      </div>
+
+      <div class="header-navigation__section">
+        <ul class="header-navigation__list" role="list">
+          <li class="header-navigation__item">
+            <a href="{{ routes.account_url }}" class="header-navigation__link">{{ 'customer.account.title' | t}}</a>
+          </li>
+          <li class="header-navigation__item">
+            <a href="{{ routes.search_url }}" class="header-navigation__link">{{ 'general.search.search' | t}}</a>
+          </li>
+          <li class="header-navigation__item">
+            <a href="{{ routes.cart_url }}" class="header-navigation__link">{{ 'templates.cart.cart' | t }} {{ 'sections.header.alternate_cart_count' | t: count: cart.item_count }}</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</header>
 
 {% schema %}
 {
   "name": "alternate-header",
-  "tag": "header",
   "settings": [
      {
       "type": "image_picker",

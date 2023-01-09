@@ -7,8 +7,17 @@
     <meta name="description" content="Shopify task">
     {{ content_for_header }}
     <title>{{ 'sections.page.title' | t}}</title>
-    <link rel="stylesheet" href="{{ 'index.css' | asset_url }}">
+    {{ 'index.css' | asset_url | stylesheet_tag }}
+    <!-- <link rel="stylesheet" href="{{ 'index.css' | asset_url }}"> -->
   </head>
+
+  <script src="https://unpkg.com/@shopify/theme-sections@4.1.1/dist/theme-sections.min.js" defer></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      Shopify.theme.sections.load('*')
+    })
+  </script>
 
   <body>
     {% section 'alternate-header' %}
@@ -18,5 +27,6 @@
     <main id="main" class="container">{{ content_for_layout }}</main>
 
     {% section 'alternate-footer' %}
+
   </body>
 </html>

@@ -1,3 +1,15 @@
+<script src="{{ 'alternate-main-product.js' | asset_url }}" type="module"></script>
+<div
+        data-section-id="{{- section.id -}}"
+        data-section-type="alternate-main-product"
+        data-product="{{- product | json | escape -}}"
+        data-handle="{{- product.handle -}}"
+></div>
+
+<!-- {% form 'product', product, id: 'product-form' %}
+  <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+{% endform %} -->
+
 <article class="main-product-card product-card">
   <div class="product-card__info">
     <h1 class="product-card__heading heading heading--xxl">{{ product.title }}</h1>
@@ -5,13 +17,13 @@
     <div class="product-card__price">
       <span class="visually-hidden">{{ 'products.product.price.price_title' | t}}</span>
       <p>
-        <!-- <abbr title="Swiss franc">CHF</abbr> -->
         <span class="price">{{ product.price  | money  }}</span>
       </p>
       <p><small>{{ 'products.product.include_taxes' | t}}</small></p>
     </div>
 
-    <form action="/cart" method="post" class="product-card__form">
+    {% form 'product', product, id: 'product-form', class: "product-card__form" %}
+    <!-- <form action="/cart" method="post" class="product-card__form"> -->
       <fieldset
         class="product-card__fieldset product-card__fieldset--size"
       >
@@ -225,7 +237,7 @@
             class="quantity__input"
             type="number"
             min="1"
-            max="5"
+            max="{{ product.selected_or_first_available_variant.inventory_quantity }}"
             value="1"
             name="quantity"
             inputmode="none"
@@ -265,34 +277,16 @@
           <span>{{ 'products.product.buy_it_now' | t}}</span>
         </button>
       </div>
-    </form>
+
+      <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+      <input type="hidden" name="sections" value="alternate-header">
+    <!-- </form> -->
+    {% endform %}
 
     <p class="product-card__text">{{ product.description }}</p>
   </div>
 
-  {%- for block in section.blocks -%}
-    <div class="collapsible-tabe">
-      <div class="collapsible-item">
-        <button class="collapsible-button" type="button">
-          {{ block.settings.accordeon_header -}}
-          <span class="сollapsible-minus"></span>
-        </button>
-      </div>
-      <div class="collapsible-content">
-        <p class="collapsible-text">{{ block.settings.accordeon_text }}</p>
-      </div>
-      <div class="collapsible-item">
-        <button class="collapsible-button" type="button">
-          Composition & Care<span class="сollapsible-plus"></span>
-        </button>
-      </div>
-      <div class="collapsible-item">
-        <button class="collapsible-button" type="button">
-          Delivery & Returns<span class="сollapsible-plus"></span>
-        </button>
-      </div>
-    </div>
-  {%- endfor -%}
+  {% render 'alternate-accordion' %}
 
   <div class="main-roduct-card__image product-card__image">
     {{ product.featured_image | image_url: width: 480 | image_tag }}
