@@ -215,7 +215,7 @@
         "type": "alternate-header",
         "settings": {
           "logo": "shopify:\/\/shop_images\/logo.png",
-          "logo_width": 100,
+          "logo_width": 120,
           "menu": "main-menu",
           "show_line_separator": true,
           "margin_bottom": 0,
@@ -230,7 +230,7 @@
             "type": "about",
             "settings": {
               "about_heading": "About",
-              "about_text": "<p>Susparsa Store<br>Geneva, Switzerland<\/p>",
+              "about_text": "<p>Susparsa Store<br\/>Geneva, Switzerland<\/p>",
               "link_Facebook": "\/facebook",
               "link_Instagram": "\/instagram"
             }
