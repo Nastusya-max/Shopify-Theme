@@ -1,0 +1,92 @@
+<article class="product-card recommendation-product-card">
+    <!-- <img
+      src="https://anastasiya-chernyavskaya.netlify.app/assets/img/DSC_2518.png"
+      alt="Product name"
+      class="recommendation-product__image product-card__image"
+    > -->
+    <div class="recommendation-product__image product-card__image">
+        {{ alternate_card_product.featured_image | image_url: width: 275 | image_tag }}
+    </div>
+    
+    <div class="product-item__info">
+      <h3 class="recommendation-product-heading heading">
+        <a href="{{ alternate_card_product.url }}" class="product-card__link">{{ alternate_card_product.title }}</a>
+      </h3>
+      {% unless alternate_card_product.available  %}
+        <ul class="product-card__tags tags" role="list">
+            <li class="tags__item tags__item--sold-out">{{ 'products.product.sold_out' | t }}</li>
+        </ul>
+      {% endunless %}
+      <fieldset class="recommendation-product-card__fieldset">
+        <legend class="visually-hidden">Color</legend>
+        <div class="radio-group">
+          <div class="radio radio--color">
+            <input
+              id="terracotta-color-1"
+              class="radio__input"
+              type="radio"
+              name="recommendation-product-color-1"
+              value="Terracotta"
+
+            ><label
+              class="radio__label recommendation-radio__label"
+              for="terracotta-color-1"
+              style="background-color: #c88252"
+              ><span class="visually-hidden">Terracotta</span></label
+            >
+          </div>
+
+          <div class="radio radio--color">
+            <input
+              id="purple-color-1"
+              class="radio__input"
+              type="radio"
+              name="recommendation-product-color-1"
+              value="Purple"
+
+            ><label
+              class="radio__label recommendation-radio__label"
+              for="purple-color-1"
+              style="background-color: #ba9be5"
+              ><span class="visually-hidden">Purple latte</span></label
+            >
+          </div>
+
+          <div class="radio radio--color">
+            <input
+              id="pink-color-1"
+              class="radio__input"
+              type="radio"
+              name="recommendation-product-color-1"
+              value="Pink"
+
+            ><label
+              class="radio__label recommendation-radio__label"
+              for="pink-color-1"
+              style="background-color: #e9a0a7"
+              ><span class="visually-hidden">Pink</span></label
+            >
+          </div>
+
+          <div class="radio radio--color">
+            <input
+              id="barely-pink-color-1"
+              class="radio__input"
+              type="radio"
+              name="recommendation-product-color-1"
+              value="Barely pink"
+
+            ><label
+              class="radio__label recommendation-radio__label"
+              for="barely-pink-color-1"
+              style="background-color: #f8cab1"
+              ><span class="visually-hidden">Barely pink</span></label
+            >
+          </div>
+        </div>
+      </fieldset>
+      <p>
+        <!-- <abbr title="Swiss franc">CHF</abbr>  -->
+        {{ alternate_card_product.price  | money  }}</p>
+    </div>
+  </article>

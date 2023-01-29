@@ -1,56 +1,70 @@
-<a class="skip-to skip-to--content" href="#main">Skip to main content</a>
-<a class="skip-to skip-to--footer" href="#footer">Skip to footer</a>
-<div class="header-navigation__container">
-  <nav class="header-navigation">
-    <div class="header-navigation__section header-logo__container">
-      <a href="/" class="header-logo__link"
-        ><span class="visually-hidden">Homepage</span>
-        <img src="{{ section.settings.logo | image_url: width: 140 }}">
-      </a>
-    </div>
+<script src="{{ 'alternate-header.js' | asset_url }}" type="module"></script>
+<div
+  data-section-id="{{- section.id -}}"
+  data-section-type="alternate-header"
+></div>
 
-    <div class="header-navigation__section">
-      <ul class="header-navigation__list" role="list">
-        <li class="header-navigation__item">
-          <a href="/women" class="header-navigation__link">Women</a>
-        </li>
-        <li class="header-navigation__item">
-          <a href="/men" class="header-navigation__link">Men</a>
-        </li>
-        <li class="header-navigation__item">
-          <a href="/kids" class="header-navigation__link">Kids</a>
-        </li>
-        <li class="header-navigation__item">
-          <a href="/company" class="header-navigation__link">Company</a>
-        </li>
-      </ul>
-    </div>
+<header>
+  <a class="skip-to skip-to--content" href="#main">{{ 'accessibility.skip_to_product_info' | t }}</a>
+  <a class="skip-to skip-to--footer" href="#footer">{{ 'accessibility.skip_to_footer' | t }}</a>
+  <div class="header-navigation__container">
+    <nav class="header-navigation">
+      <div class="header-navigation__section header-logo__container">
+        <a href="/" class="header-logo__link">
+          {%- if section.settings.logo != blank -%}
+            {%- assign logo_alt = section.settings.logo.alt | default: shop.name | escape -%}
+            {{ section.settings.logo | image_url: width: section.settings.width | image_tag:
+              class: 'header__heading-logo',   
+              width: section.settings.logo_width,
+              alt: logo_alt
+            }}
+          {%- else -%}
+            <span class="h2">{{ shop.name }}</span>
+          {%- endif -%}
+        </a>
+      </div>
+      
+      <div class="header-navigation__section">
+        {%- if section.settings.menu != blank -%}
+          <ul class="header-navigation__list" role="list">
+            {%- for link in section.settings.menu.links -%}
+              <li class="header-navigation__item">
+                {%- if link.links != blank -%}
+                  <a href="{{ link.url }}" class="header-navigation__link">{{ link.title | escape }}</a>
+                {%- else -%}
+                  <a href="{{ link.url }}" class="header-navigation__link">{{ link.title | escape }}</a>
+                {%- endif -%}
+              </li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+      </div>
 
-    <div class="header-navigation__section">
-      <ul class="header-navigation__list" role="list">
-        <li class="header-navigation__item">
-          <a href="/account" class="header-navigation__link">Account</a>
-        </li>
-        <li class="header-navigation__item">
-          <a href="/search" class="header-navigation__link">Search</a>
-        </li>
-        <li class="header-navigation__item">
-          <a href="/cart" class="header-navigation__link">Cart (0)</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-</div>
+      <div class="header-navigation__section">
+        <ul class="header-navigation__list" role="list">
+          <li class="header-navigation__item">
+            <a href="{{ routes.account_url }}" class="header-navigation__link">{{ 'customer.account.title' | t}}</a>
+          </li>
+          <li class="header-navigation__item">
+            <a href="{{ routes.search_url }}" class="header-navigation__link">{{ 'general.search.search' | t}}</a>
+          </li>
+          <li class="header-navigation__item">
+            <a href="{{ routes.cart_url }}" class="header-navigation__link">{{ 'templates.cart.cart' | t }} {{ 'sections.header.alternate_cart_count' | t: count: cart.item_count }}</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</header>
 
 {% schema %}
 {
   "name": "alternate-header",
-  "tag": "header",
   "settings": [
      {
       "type": "image_picker",
       "id": "logo",
-      "label": "t:sections.header.settings.logo.label"
+      "label": "Logo image"
     },
     {
       "type": "range",
@@ -58,21 +72,21 @@
       "min": 50,
       "max": 250,
       "step": 10,
-      "default": 100,
-      "unit": "t:sections.header.settings.logo_width.unit",
-      "label": "t:sections.header.settings.logo_width.label"
+      "default": 140,
+      "unit": "px",
+      "label": "Custom logo width"
     },
     {
       "type": "link_list",
       "id": "menu",
       "default": "main-menu",
-      "label": "t:sections.header.settings.menu.label"
+      "label": "Menu"
     },
     {
       "type": "checkbox",
       "id": "show_line_separator",
       "default": true,
-      "label": "t:sections.header.settings.show_line_separator.label"
+      "label": "Show separator line"
     },
     {
       "type": "range",
@@ -81,7 +95,7 @@
       "max": 100,
       "step": 4,
       "unit": "px",
-      "label": "t:sections.header.settings.margin_bottom.label",
+      "label": "Bottom margin",
       "default": 0
     },{
       "type": "range",
@@ -90,7 +104,7 @@
       "max": 36,
       "step": 4,
       "unit": "px",
-      "label": "t:sections.all.padding.padding_top",
+      "label": "Top padding",
       "default": 20
     },
     {
@@ -100,7 +114,7 @@
       "max": 36,
       "step": 4,
       "unit": "px",
-      "label": "t:sections.all.padding.padding_bottom",
+      "label": "Bottom padding",
       "default": 20
     }
   ]

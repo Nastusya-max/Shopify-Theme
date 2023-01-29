@@ -1,13 +1,16 @@
 <div class="breadcrumbs">
   <ol class="breadcrumbs__list" role="list">
     <li class="breadcrumbs__item">
-      <a class="breadcrumbs__page" href="/">Home</a>
+      <a class="breadcrumbs__page" href="{{ routes.root_url }}">{{ 'sections.page.home_title' | t }}</a>
     </li>
+    {%- if product.collections != blank -%} 
+      {%- assign first_collection = product.collections | first -%}
+      <li class="breadcrumbs__item">
+        <a class="breadcrumbs__page" href="">{{ first_collection.title | capitalize }}</a>
+      </li>
+    {%- endif -%}
     <li class="breadcrumbs__item">
-      <a class="breadcrumbs__page" href="">Women</a>
-    </li>
-    <li class="breadcrumbs__item">
-      <span class="breadcrumbs__page breadcrumbs__page--current">White unisex t-shirt</span>
+      <span class="breadcrumbs__page breadcrumbs__page--current">{{ product.title | capitalize }}</span>
     </li>
   </ol>
 </div>

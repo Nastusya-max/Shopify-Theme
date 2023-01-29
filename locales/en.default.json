@@ -62,6 +62,7 @@
   },
   "accessibility": {
     "skip_to_text": "Skip to content",
+    "skip_to_footer": "Skip to footer",
     "skip_to_product_info": "Skip to product information",
     "close": "Close",
     "unit_price_separator": "per",
@@ -105,6 +106,7 @@
   "products": {
     "product": {
       "add_to_cart": "Add to cart",
+      "buy_it_now": "Buy it now",
       "choose_options": "Choose options",
       "choose_product_options": "Choose options for {{ product_name }}",
       "description": "Description",
@@ -136,10 +138,26 @@
         "refresh": "Refresh"
       },
       "price": {
+        "price_title": "Product price",
         "from_price_html": "From {{ price }}",
         "regular_price": "Regular price",
         "sale_price": "Sale price",
         "unit_price": "Unit price"
+      },
+      "product_settings": {
+        "size": {
+          "title": "Size",
+          "options": {
+            "XS": "XS",
+            "S": "S",
+            "M": "M",
+            "L": "L",
+            "XL": "XL",
+            "XXL": "XXL"
+          }
+        },
+        "color": {
+        }
       },
       "share": "Share this product",
       "sold_out": "Sold out",
@@ -149,7 +167,7 @@
       "view_full_details": "View full details",
       "xr_button": "View in your space",
       "xr_button_label": "View in your space, loads item in augmented reality window",
-      "include_taxes": "Tax included.",
+      "include_taxes": "Tax included",
       "shipping_policy_html": "<a href=\"{{ link }}\">Shipping<\/a> calculated at checkout."
     },
     "modal": {
@@ -229,6 +247,10 @@
       "cart_count": {
         "one": "{{ count }} item",
         "other": "{{ count }} items"
+      },
+      "alternate_cart_count": {
+        "one": "({{ count }})",
+        "other": "({{ count }})"
       }
     },
     "cart": {
@@ -260,7 +282,10 @@
       }
     },
     "footer": {
-      "payment": "Payment methods"
+      "payment": "Payment methods",
+      "copyright": {
+        "label": "Copyright"
+      }
     },
     "featured_blog": {
       "view_all": "View all",
@@ -292,7 +317,8 @@
       "slide": "Slide"
     },
     "page": {
-      "title": "Page title"
+      "title": "Page title",
+      "home_title": "Home"
     }
   },
   "localization": {
